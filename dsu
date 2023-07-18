@@ -1,0 +1,20 @@
+int findp(int n, vector<int>&par){
+    if(par[n]==n) return n;
+    return par[n] = findp(par[n],par);
+}
+
+void unionn (int a, int b , vector<int>&par , vector<int>&size){
+    int pa=findp(a,par);
+    int pb=findp(b,par);
+    if(pa==pb) return;
+    else{
+        if(size[pa]<size[pb]){
+            par[pa]=pb;
+            size[pb]+=size[pa];
+        }
+        else{
+            par[pa]=pb;
+            size[pb]+=size[pa];
+        }
+    }
+}
