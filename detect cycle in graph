@@ -1,0 +1,22 @@
+bool dfs(int cur, vector<vector<int>>&v ,vector<int>&vis){
+        vis[cur]=1;
+        for(auto neigh:v[cur]){
+            if(vis[neigh]==0){
+                if(dfs(neigh,v,vis)==false) return false;
+            }
+            else if(vis[neigh]==1) return false;
+        }
+        vis[cur]=2;
+        return true;
+    }
+int main(){
+    vector<vector<int>>v(n);
+    vector<int>vis(n,0);
+    bool flag=true;
+    for(int i=0;i<n;i++){
+        if(vis[i]==0){
+            flag = flag && dfs(i,v,vis);
+        }
+    }
+    return flag;
+}
