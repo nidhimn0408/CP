@@ -1,0 +1,24 @@
+//each node belongs to 2 colours (0 or 1) such that no two adjacent nodes have the same colour
+
+bool dfs(int cur, vector<vector<int>>&v,  vector<int>&vis ){
+        bool ans=true;
+        for(auto neigh:v[cur]){
+            if(vis[neigh]==-1) {
+                vis[neigh]=1-vis[cur];
+                ans=ans && dfs(neigh,v,vis);
+            }
+            else if(vis[neigh]==vis[cur]) return false;
+        }
+        return ans;
+    }
+    bool isBipartite(vector<vector<int>>&v) {
+        int n=v.size();
+        vector<int>vis(n,-1);
+        for(int i=0;i<n;i++){
+            if(vis[i]==-1){
+                vis[i]=0;
+                if(dfs(i,v,vis) == false) return false;
+            }
+        }
+        return true;
+    }
