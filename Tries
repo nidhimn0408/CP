@@ -13,13 +13,9 @@ private:
     TrieNode *root;
 
 public:
-
-    /** Initialize your data structure here. */
     Trie() {
         root= new TrieNode();
     }
-
-    /** Inserts a word into the trie. */
     void insert(string word) {
         TrieNode *cur=root;
         for(auto i:word){
@@ -28,8 +24,6 @@ public:
         }
         cur->isEnd=true;
     }
-
-    /** Returns if the word is in the trie. */
     bool search(string word) {
         TrieNode *cur=root;
         for(auto i:word){
@@ -38,8 +32,6 @@ public:
         }
         return cur->isEnd;
     }
-
-    /** Returns if there is any word in the trie that starts with the given prefix. */
     bool startsWith(string prefix) {
         TrieNode *cur=root;
         for(auto i:prefix){
