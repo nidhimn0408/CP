@@ -1,0 +1,23 @@
+//works for negative edges but not negative cycles
+vector<int> bellman_ford(int V, vector<vector<int>> &edges, int S)
+{
+  vector<int> dist(V, 1e8);
+  dist[S] = 0;
+  for (int i = 0; i < V - 1; i++)
+  {
+    for (auto it : edges)
+    {
+      int u = it[0], v = it[1], wt = it[2];
+      if (dist[u] == 1e8) continue;
+      dist[v] = min(dist[v], dist[u] + wt);
+    }
+  }
+  for (auto it : edges)
+  {
+    //detecting -ve cycle
+    int u = it[0], v = it[1], wt = it[2];
+    if (dist[u] == 1e8) continue;
+    if (dist[v] > dist[u] + wt) return {-1};
+  }
+  return dist;
+}
