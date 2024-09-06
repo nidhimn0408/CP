@@ -1,0 +1,14 @@
+//tc : 0(sqrt(n))
+vector<int> getFactors(int n)
+{
+    int x = n;
+    vector<int> primes;
+    for(int i=2; i*i <= x; i++){
+        while(n % i == 0){
+            primes.push_back(i);
+            n /= i;
+        }
+    }
+    if(n != 1) primes.push_back(n);
+    return primes;
+}
