@@ -1,0 +1,20 @@
+//tc : n cube
+void fw(int n, vector<vector<int>>&e) {
+    //n is num of nodes (0 to n-1)
+    // e -> {node1, node2, weight}
+    vector<vector<int>>dist(n,vector<int>(n,1e8));
+    for(auto i:e){
+        int u=i[0] , v=i[1] ,w=i[2];
+          dist[u][v] = w;
+          dist[v][u] = w;
+    }
+    for(int i=0;i<n;i++) dist[i][i]=0;
+    for(int k=0;k<n;k++){
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                dist[i][j] = min(dist[i][j] , dist[i][k]+ dist[k][j]);
+            }
+        }
+    }
+    // if(dist[i][i] < 0) for any i, then there exists a negative cycle
+}
