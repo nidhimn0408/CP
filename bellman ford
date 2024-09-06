@@ -1,4 +1,5 @@
 //works for negative edges but not negative cycles
+//tc : 0(vertices * edges)
 vector<int> bellman_ford(int V, vector<vector<int>> &edges, int S)
 {
   vector<int> dist(V, 1e8);
