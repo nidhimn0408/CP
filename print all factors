@@ -1,0 +1,15 @@
+//tc : o( sqrt(n) ) 
+vector<long long> printAllFactors(long long n)
+{
+    vector<long long>factors;
+    for (long long i = 1; i <= sqrt(n); i++) {
+        if (n % i == 0) {
+            if (n / i == i) factors.push_back(i);
+            else{
+                factors.push_back(i);
+                factors.push_back(n/i);
+            }
+        }
+    }
+    return factors;
+}
