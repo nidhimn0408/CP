@@ -1,0 +1,32 @@
+//TC : log n
+//SC : n -> hence only till 1e7 
+
+int N = 1e7;
+vector<int>spf(N,1);
+
+// Calculating SPF (Smallest Prime Factor) for every number till 1e7.
+// Time Complexity : O(nloglogn)
+void sieve()
+{
+    spf[0] = 0;
+    spf[1] = 0;
+    for (int i = 2; i <= N; i++) {
+        if (spf[i] == 1) { 
+            for (int j = i; j <= N; j += i) {
+                if (spf[j]== 1) spf[j] = i;
+            }
+        }
+    }
+}
+
+// A O(log n) function returning primefactorization
+// by dividing by smallest prime factor at every step
+vector<int> getFactorization(int x)
+{
+    vector<int> primes;
+    while (x != 1) {
+        primes.push_back(spf[x]);
+        x = x / spf[x];
+    }
+    return primes;
+}
