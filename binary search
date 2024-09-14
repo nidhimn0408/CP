@@ -1,0 +1,13 @@
+auto pred = [&]()
+{
+  //return some boolean
+};
+
+long long l = -1, r = 1e9 + 1;
+while (r - l > 1)
+{
+  long long m = (l + r) / 2;
+  pred(m) ? (l = m) : (r = m);
+}
+
+//return l or r;
